@@ -1,189 +1,189 @@
 # FocusFlow
 
-**Интегрированная среда для продуктивного обучения, которая не дает выпасть из потока**
+**Zintegrowane środowisko do produktywnej nauki, które nie pozwala wypaść z flow**
 
-## 🎯 Проблема
+## 🎯 Problem
 
-Зумеры садятся заниматься, включают таймер, но на 5-й минуте натыкаются на непонятную тему. Возникает фрустрация → открывается Google → появляется уведомление в Telegram → "на секунду" заходят в TikTok → 20 минут потеряно.
+Zoomers siadają do nauki, włączają timer, ale na 5. minucie napotykają niezrozumiały temat. Pojawia się frustracja → otwiera się Google → pojawia się powiadomienie w Telegramie → "na sekundę" wchodzą na TikToka → 20 minut stracone.
 
-**Фокус-сессия провалена. Поток сломан.**
+**Sesja fokusowa nieudana. Flow przerwane.**
 
-## 💡 Решение: "Фокус-Петля"
+## 💡 Rozwiązanie: "Pętla Fokusowa"
 
-FocusFlow ловит момент фрустрации и предотвращает побег из приложения. Вместо того чтобы уходить в Google (где ждут 1000 отвлечений), пользователь получает мгновенную помощь прямо в процессе обучения.
+FocusFlow wychwytuje moment frustracji i zapobiega ucieczce z aplikacji. Zamiast uciekać do Google (gdzie czeka 1000 rozpraszaczy), użytkownik otrzymuje natychmiastową pomoc bezpośrednio w trakcie nauki.
 
-### Как это работает
+### Jak to działa
 
-1. **Простой сетап**: Создаешь проект (например, "Экзамен по Биологии"), добавляешь темы текстом
-2. **Эстетичный таймер**: Нажимаешь Play → запускается минималистичный Pomodoro (25 мин) с Lo-Fi атмосферой
-3. **Кнопка "🤯 Я застрял"**: Прямо на экране таймера (он не останавливается!)
-4. **Контекстный ИИ-помощник**: Выезжает чат сбоку, ИИ уже знает твою тему и готов помочь
-5. **Возврат в поток**: Получил ответ за 30 секунд → закрыл чат → продолжил учиться
+1. **Prosty setup**: Tworzysz projekt (np. "Egzamin z Biologii"), dodajesz tematy tekstem
+2. **Estetyczny timer**: Klikasz Play → uruchamia się minimalistyczny Pomodoro (25 min) z atmosferą Lo-Fi
+3. **Przycisk "🤯 Utknąłem"**: Bezpośrednio na ekranie timera (który się nie zatrzymuje!)
+4. **Kontekstowy asystent AI**: Wyjeżdża chat z boku, AI już zna Twój temat i jest gotowe pomóc
+5. **Powrót do flow**: Otrzymałeś odpowiedź w 30 sekund → zamknąłeś chat → kontynuujesz naukę
 
-## 🚀 Ключевые особенности
+## 🚀 Kluczowe funkcje
 
-- **Не прерывает поток**: Таймер продолжает идти, пока ты общаешься с ИИ
-- **Контекстная помощь**: ИИ знает, над какой темой ты работаешь
-- **Быстрее Google**: Одна кнопка вместо разблокировки телефона и поиска
-- **Психологический трюк**: Признаем фрустрацию и даем "аварийный люк"
+- **Nie przerywa flow**: Timer nadal działa, gdy rozmawiasz z AI
+- **Kontekstowa pomoc**: AI wie, nad jakim tematem pracujesz
+- **Szybciej niż Google**: Jeden przycisk zamiast odblokowywania telefonu i wyszukiwania
+- **Psychologiczny trick**: Uznajemy frustrację i dajemy "wyjście awaryjne"
 
-## 📋 Сценарий использования
+## 📋 Scenariusz użycia
 
-**ДО (без FocusFlow):**
+**PRZED (bez FocusFlow):**
 ```
-Сел учить → Застрял → Расстроился → Открыл TikTok → Сессия провалена
-```
-
-**ПОСЛЕ (с FocusFlow):**
-```
-Сел учить → Застрял → Нажал "Я застрял" → Получил ответ от ИИ → Продолжил учиться
+Siadłem do nauki → Utknąłem → Zdenerwowałem się → Otworzyłem TikToka → Sesja nieudana
 ```
 
-## 📦 Функционал MVP
+**PO (z FocusFlow):**
+```
+Siadłem do nauki → Utknąłem → Kliknąłem "Utknąłem" → Otrzymałem odpowiedź od AI → Kontynuuję naukę
+```
 
-### 1. Управление проектами
-- Создание проекта (название, предмет, дедлайн)
-- Добавление тем для изучения
-- Оценка уверенности по каждой теме (1-5 звезд)
-- Автоматическая приоритизация на основе:
-  - Близости дедлайна
-  - Уровня уверенности (низкая уверенность = высокий приоритет)
-  - Формула: `приоритет = (дни до дедлайна)^-1 × (6 - уровень уверенности)`
+## 📦 Funkcjonalność MVP
 
-### 2. Фокус-таймер
-- Pomodoro 25 минут
-- Минималистичный полноэкранный интерфейс
-- Плавные анимации и градиенты
-- Фоновая музыка/звуки (опционально)
-- Кнопка "🤯 Я застрял" всегда видна
+### 1. Zarządzanie projektami
+- Tworzenie projektu (nazwa, przedmiot, deadline)
+- Dodawanie tematów do nauki
+- Ocena pewności dla każdego tematu (1-5 gwiazdek)
+- Automatyczna priorytetyzacja na podstawie:
+  - Bliskości deadline'u
+  - Poziomu pewności (niska pewność = wysoki priorytet)
+  - Formuła: `priorytet = (dni do deadline'u)^-1 × (6 - poziom pewności)`
 
-### 3. ИИ-помощник
-- Контекстный чат (знает текущую тему)
-- Открывается сбоку, не закрывая таймер
-- Первое сообщение от ИИ автоматически
-- История диалога сохраняется
-- Интеграция с Google Gemini / OpenAI
+### 2. Timer fokusowy
+- Pomodoro 25 minut
+- Minimalistyczny interfejs pełnoekranowy
+- Płynne animacje i gradienty
+- Muzyka/dźwięki w tle (opcjonalnie)
+- Przycisk "🤯 Utknąłem" zawsze widoczny
 
-### 4. Статистика
-- Количество завершенных сессий
-- Темы, где чаще всего застревал
-- Прогресс по проекту
+### 3. Asystent AI
+- Kontekstowy chat (zna aktualny temat)
+- Otwiera się z boku, nie zasłaniając timera
+- Pierwsza wiadomość od AI automatycznie
+- Historia dialogu jest zapisywana
+- Integracja z Google Gemini / OpenAI
 
-## 🎨 Дизайн-концепция
+### 4. Statystyki
+- Liczba ukończonych sesji
+- Tematy, w których najczęściej utknąłeś
+- Postęp w projekcie
 
-### Стиль: Минимализм + Gen Z эстетика
+## 🎨 Koncepcja designu
 
-**Цветовая палитра:**
-- Основной: Темный фон (#1a1a2e, #16213e)
-- Акцент: Градиенты (фиолетовый → синий, #6a5acd → #4169e1)
-- Текст: Белый/светло-серый (#f0f0f0)
-- Успех: Мягкий зеленый (#4ade80)
-- Предупреждение: Теплый оранжевый (#fb923c)
+### Styl: Minimalizm + estetyka Gen Z
 
-**Типографика:**
-- Заголовки: Inter / Poppins (жирные, 24-48px)
-- Текст: Inter / SF Pro (обычный, 14-16px)
-- Таймер: Моноширинный шрифт (72-96px)
+**Paleta kolorów:**
+- Podstawowy: Ciemne tło (#1a1a2e, #16213e)
+- Akcent: Gradienty (fioletowy → niebieski, #6a5acd → #4169e1)
+- Tekst: Biały/jasnoszary (#f0f0f0)
+- Sukces: Miękka zieleń (#4ade80)
+- Ostrzeżenie: Ciepły pomarańczowy (#fb923c)
 
-**UI-элементы:**
-- Скругленные углы (border-radius: 16-24px)
-- Glassmorphism эффекты (backdrop-blur)
-- Плавные тени (box-shadow с размытием)
-- Анимации на hover (transform: scale(1.05))
+**Typografia:**
+- Nagłówki: Inter / Poppins (pogrubione, 24-48px)
+- Tekst: Inter / SF Pro (zwykły, 14-16px)
+- Timer: Czcionka monospace (72-96px)
 
-### Экраны
+**Elementy UI:**
+- Zaokrąglone rogi (border-radius: 16-24px)
+- Efekty glassmorphism (backdrop-blur)
+- Płynne cienie (box-shadow z rozmyciem)
+- Animacje na hover (transform: scale(1.05))
 
-**1. Главная страница**
+### Ekrany
+
+**1. Strona główna**
 ```
 ┌─────────────────────────────────────┐
 │  FocusFlow                    [+]   │
 ├─────────────────────────────────────┤
-│  📚 Экзамен по Биологии             │
-│  Дедлайн: 15 мая • 3 темы           │
+│  📚 Egzamin z Biologii              │
+│  Deadline: 15 maja • 3 tematy       │
 │  ━━━━━━━━━━━━━━━━━━━━━━━━━━ 60%   │
 │                                     │
-│  🔥 Приоритетные темы:              │
-│  • Фотосинтез ⭐⭐☆☆☆ [Play ▶]     │
-│  • Митоз ⭐⭐⭐☆☆ [Play ▶]          │
+│  🔥 Tematy priorytetowe:            │
+│  • Fotosynteza ⭐⭐☆☆☆ [Play ▶]    │
+│  • Mitoza ⭐⭐⭐☆☆ [Play ▶]         │
 └─────────────────────────────────────┘
 ```
 
-**2. Экран таймера**
+**2. Ekran timera**
 ```
 ┌─────────────────────────────────────┐
 │                                     │
-│         Фотосинтез                  │
+│         Fotosynteza                 │
 │                                     │
 │           24:35                     │
 │                                     │
-│      [🤯 Я застрял]                 │
+│      [🤯 Utknąłem]                  │
 │                                     │
-│      [⏸ Пауза]  [⏹ Стоп]           │
+│      [⏸ Pauza]  [⏹ Stop]           │
 └─────────────────────────────────────┘
 ```
 
-**3. Таймер + ИИ-чат**
+**3. Timer + chat AI**
 ```
 ┌──────────────────┬──────────────────┐
-│                  │ 💬 ИИ-помощник   │
-│   Фотосинтез     ├──────────────────┤
-│                  │ 🤖: Вижу, ты     │
-│      24:35       │ работаешь над    │
-│                  │ темой "Фотосин-  │
-│  [🤯 Я застрял]  │ тез". Что непо-  │
-│                  │ нятно?           │
+│                  │ 💬 Asystent AI   │
+│   Fotosynteza    ├──────────────────┤
+│                  │ 🤖: Widzę, że    │
+│      24:35       │ pracujesz nad    │
+│                  │ tematem "Foto-   │
+│  [🤯 Utknąłem]   │ synteza". Co     │
+│                  │ niejasne?        │
 │  [⏸]  [⏹]       │                  │
-│                  │ 👤: Что такое    │
-│                  │ цикл Кальвина?   │
+│                  │ 👤: Czym jest    │
+│                  │ cykl Calvina?    │
 │                  │                  │
-│                  │ 🤖: Цикл Каль-   │
-│                  │ вина - это...    │
+│                  │ 🤖: Cykl Cal-    │
+│                  │ vina to...       │
 │                  │                  │
-│                  │ [Отправить]  [×] │
+│                  │ [Wyślij]     [×] │
 └──────────────────┴──────────────────┘
 ```
 
-## 🔮 Будущее развитие
+## 🔮 Przyszły rozwój
 
-- **Интервальное повторение**: Система отслеживает темы, где пользователь часто застревает, и добавляет их в очередь на повторение
-- **Мультимодальность**: Voice-to-Setup для быстрого создания учебных планов голосом
-- **Расширенное обучение с ИИ**: Базовое обучение теоретическим темам с интерактивными объяснениями
-- **Социальные функции**: Совместные сессии с друзьями
-- **Геймификация**: Достижения, стрики, уровни
+- **Powtórki interwałowe**: System śledzi tematy, w których użytkownik często utyka, i dodaje je do kolejki powtórek
+- **Multimodalność**: Voice-to-Setup do szybkiego tworzenia planów nauki głosem
+- **Rozszerzona nauka z AI**: Podstawowa nauka tematów teoretycznych z interaktywnymi wyjaśnieniami
+- **Funkcje społecznościowe**: Wspólne sesje z przyjaciółmi
+- **Gamifikacja**: Osiągnięcia, streak'i, poziomy
 
-## 🛠 Технологии
+## 🛠 Technologie
 
 - **Frontend**: React + TypeScript
 - **Backend**: FastAPI (Python)
 - **AI**: Google Gemini / OpenAI API
 
-## 📁 Структура проекта
+## 📁 Struktura projektu
 
 ```
 FocusFlow/
-├── frontend/          # React приложение
-├── backend/           # FastAPI сервер
-├── start-frontend.sh  # Запуск фронтенда
-└── start-backend.sh   # Запуск бэкенда
+├── frontend/          # Aplikacja React
+├── backend/           # Serwer FastAPI
+├── start-frontend.sh  # Uruchomienie frontendu
+└── start-backend.sh   # Uruchomienie backendu
 ```
 
-## 🚀 Запуск
+## 🚀 Uruchomienie
 
-### Бэкенд (порт 8000)
+### Backend (port 8000)
 ```bash
 ./start-backend.sh
 ```
 
-### Фронтенд (порт 3000)
+### Frontend (port 3000)
 ```bash
 ./start-frontend.sh
 ```
 
 ## 📡 API
 
-- `GET /` - Главная страница API
-- `GET /api/health` - Проверка состояния сервера
+- `GET /` - Strona główna API
+- `GET /api/health` - Sprawdzenie stanu serwera
 
 ---
 
-**FocusFlow** — предохранитель от прокрастинации, который заменяет деструктивный паттерн (побег в TikTok) на конструктивный (решение проблемы с ИИ).
+**FocusFlow** — zabezpieczenie przed prokrastynacją, które zastępuje destrukcyjny wzorzec (ucieczka na TikToka) konstruktywnym (rozwiązanie problemu z AI).
