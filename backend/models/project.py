@@ -5,7 +5,7 @@ from uuid import UUID, uuid4
 
 class TopicBase(BaseModel):
     name: str
-    confidence_level: int = 1
+    confidence_level: int = 1  # 1-5 stars
 
 class Topic(TopicBase):
     id: UUID
@@ -20,7 +20,7 @@ class ProjectBase(BaseModel):
     deadline: datetime
 
 class ProjectCreate(ProjectBase):
-    topics: List[str] = []
+    topics: List[str] = []  # List of topic names
 
 class Project(ProjectBase):
     id: UUID
