@@ -1,40 +1,41 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from typing import List
 from models.project import Project, ProjectCreate, ProjectUpdate
 import database as db
+from dependencies import get_current_user
 
 router = APIRouter()
 
 @router.get("/", response_model=List[Project])
-def get_all_projects():
+async def get_all_projects(current_user: dict = Depends(get_current_user)):
     """Get all projects"""
-    return db.get_all_projects()
+    return await db.get_all_projects(current_user["id"])
 
 @router.post("/", response_model=Project)
-def create_project(project: ProjectCreate):
+async def create_project(project: ProjectCreate, current_user: dict = Depends(get_current_user)):
     """Create new project"""
-    return db.create_project(project)
+    return await db.create_project(project, current_user["id"])
 
 @router.get("/{project_id}", response_model=Project)
-def get_project_by_id(project_id: str):
+async def get_project_by_id(project_id: str, current_user: dict = Depends(get_current_user)):
     """Get project by ID"""
-    project = db.get_project(project_id)
+    project = await db.get_project(project_id)
     if not project:
         raise HTTPException(status_code=404, detail="Project not found")
     return project
 
 @router.put("/{project_id}", response_model=Project)
-def update_project_by_id(project_id: str, update_data: ProjectUpdate):
+async def update_project_by_id(project_id: str, update_data: ProjectUpdate, current_user: dict = Depends(get_current_user)):
     """Update project"""
-    project = db.update_project(project_id, update_data)
+    project = await db.update_project(project_id, update_data)
     if not project:
         raise HTTPException(status_code=404, detail="Project not found")
     return project
 
 @router.delete("/{project_id}")
-def delete_project_by_id(project_id: str):
+async def delete_project_by_id(project_id: str, current_user: dict = Depends(get_current_user)):
     """Delete project"""
-    success = db.delete_project(project_id)
+    success = await db.delete_project(project_id)
     if not success:
         raise HTTPException(status_code=404, detail="Project not found")
     return {"message": "Project deleted"}
