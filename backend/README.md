@@ -6,29 +6,44 @@ FastAPI сервер для приложения FocusFlow - системы пр
 
 ```
 backend/
-├── app/
-│   ├── main.py              # Точка входа FastAPI
-│   ├── models/              # Pydantic модели
-│   │   ├── project.py       # Модели проектов
-│   │   ├── topic.py         # Модели тем
-│   │   └── session.py       # Модели сессий
-│   ├── routers/             # API роутеры
-│   │   ├── projects.py      # CRUD проектов
-│   │   ├── topics.py        # CRUD тем
-│   │   ├── sessions.py      # Управление сессиями
-│   │   └── ai_chat.py       # ИИ-чат
-│   ├── services/            # Бизнес-логика
-│   │   ├── ai_service.py    # Интеграция с ИИ
-│   │   ├── priority.py      # Расчет приоритетов
-│   │   └── stats.py         # Статистика
-│   └── database/            # База данных
-│       ├── connection.py    # Подключение к БД
-│       └── models.py        # SQLAlchemy модели
+├── main.py                  # Точка входа FastAPI
+├── config.py                # Конфигурация
+├── dependencies.py          # Зависимости FastAPI
+├── exceptions.py            # Кастомные исключения
+├── models/                  # Pydantic модели
+│   ├── user.py              # Модели пользователей
+│   ├── project.py           # Модели проектов
+│   ├── topic.py             # Модели тем
+│   ├── session.py           # Модели сессий
+│   ├── chat.py              # Модели чата
+│   └── stats.py             # Модели статистики
+├── routers/                 # API роутеры
+│   ├── auth.py              # Аутентификация
+│   ├── projects.py          # CRUD проектов
+│   ├── topics.py            # CRUD тем
+│   ├── sessions.py          # Управление сессиями
+│   ├── ai_chat.py           # ИИ-чат
+│   └── stats.py             # Статистика
+├── services/                # Бизнес-логика
+│   ├── auth_service.py      # Аутентификация
+│   ├── ai_service.py        # Интеграция с ИИ
+│   ├── priority_service.py  # Расчет приоритетов
+│   └── stats.py             # Статистика
+├── database/                # База данных
+│   ├── connection.py        # Подключение к БД
+│   ├── project_repository.py
+│   ├── topic_repository.py
+│   ├── session_repository.py
+│   └── chat_repository.py
 ├── requirements.txt         # Зависимости
-└── .env                     # Переменные окружения
+└── .env.example             # Пример переменных окружения
 ```
 
 ## 📡 API Endpoints
+
+### Аутентификация
+- `POST /api/auth/register` - Регистрация пользователя
+- `POST /api/auth/login` - Вход в систему
 
 ### Проекты
 - `GET /api/projects` - Список всех проектов
@@ -68,7 +83,7 @@ backend/
 {
     "id": "uuid",
     "name": "Экзамен по Биологии",
-    "subject": "Биология", 
+    "subject": "Биология",
     "deadline": "2024-05-15",
     "created_at": "2024-01-15T10:00:00Z",
     "topics": [...],
@@ -118,8 +133,8 @@ backend/
 ### Контекстный промпт
 ```python
 system_prompt = f"""
-Ты ИИ-помощник в приложении FocusFlow. 
-Пользователь изучает тему: "{topic_name}" 
+Ты ИИ-помощник в приложении FocusFlow.
+Пользователь изучает тему: "{topic_name}"
 в рамках проекта: "{project_name}".
 
 Твоя задача:
@@ -172,7 +187,7 @@ CORS_ORIGINS=http://localhost:3000
 
 ### Запуск сервера
 ```bash
-uvicorn app.main:app --reload --port 8000
+uvicorn main:app --reload --port 8000
 ```
 
 ## 📊 База данных
@@ -181,13 +196,6 @@ uvicorn app.main:app --reload --port 8000
 - Простая настройка
 - Файловая БД
 - Подходит для прототипа
-
-### Миграции
-```bash
-alembic init alembic
-alembic revision --autogenerate -m "Initial migration"
-alembic upgrade head
-```
 
 ## 🔒 Безопасность
 

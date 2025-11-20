@@ -1,23 +1,26 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, validator
 from datetime import datetime
 from typing import List, Optional
 from uuid import UUID, uuid4
+from config import settings
 
-class TopicBase(BaseModel):
-    name: str
-    confidence_level: int = 1  # 1-5 stars
-
-class Topic(TopicBase):
-    id: UUID
-    project_id: UUID
-    priority_score: float = 0.0
-    stuck_count: int = 0
-    created_at: datetime
 
 class ProjectBase(BaseModel):
     name: str
     subject: str
     deadline: datetime
+
+    @validator('deadline')
+    def validate_deadline(cls, v):
+        if v <= datetime.now():
+            raise ValueError('Deadline must be in the future')
+        return v
+
+    @validator('name', 'subject')
+    def validate_not_empty(cls, v):
+        if not v or not v.strip():
+            raise ValueError('Field cannot be empty')
+        return v.strip()
 
 class ProjectCreate(ProjectBase):
     topics: List[str] = []  # List of topic names
@@ -25,7 +28,7 @@ class ProjectCreate(ProjectBase):
 class Project(ProjectBase):
     id: UUID
     created_at: datetime
-    topics: List[Topic] = []
+    topics: List = []  # Will be populated with Topic objects
     progress: float = 0.0
 
 class ProjectUpdate(BaseModel):

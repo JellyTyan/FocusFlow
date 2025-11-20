@@ -5,11 +5,10 @@ from jose import JWTError, jwt
 from passlib.context import CryptContext
 from fastapi import HTTPException, status
 from uuid import uuid4
+from config import settings
+import logging
 
-SECRET_KEY = "your-secret-key-here"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
-DATABASE_URL = "focusflow.db"
+logger = logging.getLogger(__name__)
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -26,28 +25,28 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     else:
         expire = datetime.utcnow() + timedelta(minutes=15)
     to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    encoded_jwt = jwt.encode(to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
     return encoded_jwt
 
 def verify_token(token: str):
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        email: str = payload.get("sub")
+        payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
+        email = payload.get("sub")
         if email is None:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Invalid token"
             )
         return email
-    except JWTError:
+    except JWTError as e:
+        logger.warning(f"Token verification failed: {e}")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid token"
         )
 
 async def create_user(email: str, password: str, name: str):
-    async with aiosqlite.connect(DATABASE_URL) as db:
-        # Check if user exists
+    async with aiosqlite.connect(settings.DATABASE_URL) as db:
         cursor = await db.execute("SELECT id FROM users WHERE email = ?", (email,))
         if await cursor.fetchone():
             raise HTTPException(
@@ -73,7 +72,7 @@ async def create_user(email: str, password: str, name: str):
         }
 
 async def authenticate_user(email: str, password: str):
-    async with aiosqlite.connect(DATABASE_URL) as db:
+    async with aiosqlite.connect(settings.DATABASE_URL) as db:
         cursor = await db.execute(
             "SELECT id, email, name, hashed_password, created_at FROM users WHERE email = ?",
             (email,)
@@ -94,7 +93,7 @@ async def authenticate_user(email: str, password: str):
         }
 
 async def get_user_by_email(email: str):
-    async with aiosqlite.connect(DATABASE_URL) as db:
+    async with aiosqlite.connect(settings.DATABASE_URL) as db:
         cursor = await db.execute(
             "SELECT id, email, name, created_at FROM users WHERE email = ?",
             (email,)
