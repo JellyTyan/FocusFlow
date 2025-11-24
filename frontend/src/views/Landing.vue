@@ -7,7 +7,7 @@
         <div class="w-[15rem] sm:w-[25rem] lg:w-[30rem] h-[15rem] sm:h-[25rem] lg:h-[30rem] rounded-full bg-soft-coral/10 blur-3xl absolute bottom-0 left-5 sm:left-8 lg:left-10"></div>
       </div>
 
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 py-8 sm:py-10 lg:py-12 xl:py-16 space-y-12 sm:space-y-16 lg:space-y-20">
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 py-6 sm:py-6 lg:py-6 xl:py-8 space-y-12 sm:space-y-16 lg:space-y-20">
         <header class="flex items-center justify-between gap-3 sm:gap-4 lg:gap-6 flex-wrap">
           <div class="flex items-center gap-2 sm:gap-3 min-w-0 flex-shrink-0">
             <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-gradient-to-br from-sea-mint to-soft-coral flex items-center justify-center font-bold text-deep-indigo text-xs sm:text-sm flex-shrink-0">
@@ -38,7 +38,7 @@
               <span class="sm:hidden">Dashboard</span>
             </router-link>
           </div>
-          <router-link v-else to="/auth/login" class="btn-ghost text-xs sm:text-sm px-3 sm:px-4 lg:px-5 py-1.5 sm:py-2 whitespace-nowrap flex-shrink-0">
+          <router-link v-else to="/auth/login" class="btn-ghost !rounded-lg text-xs sm:text-sm px-3 sm:px-4 lg:px-5 py-1.5 sm:py-2 whitespace-nowrap flex-shrink-0">
             Zaloguj się
           </router-link>
         </header>
@@ -54,10 +54,10 @@
               Utwórz egzamin, uruchom Pomodoro, naciśnij "🤯 utknąłem" — i otrzymaj odpowiedź od AI bez chaosu Google.
             </p>
             <div class="flex flex-wrap gap-3 sm:gap-4">
-              <router-link to="/auth/register" class="btn-primary text-sm sm:text-base px-4 sm:px-6 py-2.5 sm:py-3">
+              <router-link to="/auth/register" class="btn-primary !rounded-lg text-sm sm:text-base px-4 sm:px-6 py-2.5 sm:py-3">
                 🚀 Zacznij za darmo
               </router-link>
-              <router-link to="/auth/login" class="btn-ghost text-sm sm:text-base px-4 sm:px-6 py-2.5 sm:py-3">
+              <router-link to="/auth/login" class="btn-ghost !rounded-lg text-sm sm:text-base px-4 sm:px-6 py-2.5 sm:py-3">
                 Zobacz dashboard
               </router-link>
             </div>
@@ -170,14 +170,14 @@
           v-lazy-show
         >
           <div class="text-center lg:text-left">
-            <p class="text-[0.625rem] sm:text-xs uppercase tracking-[0.4em] text-text-secondary">gotowy do startu</p>
+            <p class="text-[0.625rem] mb-1 sm:mb-2 sm:text-xs uppercase tracking-[0.4em] text-text-secondary">gotowy do startu</p>
             <h3 class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-soft-ice">Złóż sesję fokusową w 45 sekund</h3>
           </div>
           <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
-            <router-link to="/auth/register" class="btn-primary text-sm sm:text-base px-4 sm:px-6 py-2.5 sm:py-3 text-center">
+            <router-link to="/auth/register" class="btn-primary !rounded-lg text-sm sm:text-base px-4 sm:px-6 py-2.5 sm:py-3 text-center">
               ✨ Utwórz konto
             </router-link>
-            <router-link to="/auth/login" class="btn-ghost text-sm sm:text-base px-4 sm:px-6 py-2.5 sm:py-3 text-center">
+            <router-link to="/auth/login" class="btn-ghost !rounded-lg text-sm sm:text-base px-4 sm:px-6 py-2.5 sm:py-3 text-center">
               Mam już login
             </router-link>
           </div>
