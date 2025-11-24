@@ -1,0 +1,11 @@
+.git/
+.gitignore
+node_modules/
+__pycache__/
+*.db
+*.log
+.DS_Store
+.vscode/
+.idea/
+CLEANUP_ANALYSIS.md
+

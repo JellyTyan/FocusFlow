@@ -1,0 +1,13 @@
+fastapi>=0.100.0
+starlette>=0.27.0
+uvicorn>=0.25.0
+fastapi-users[sqlalchemy]>=13.0.0
+sqlalchemy>=2.0.0
+aiomysql>=0.2.0
+pymysql>=1.1.0
+python-multipart>=0.0.6
+email-validator>=2.0.0
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+starlette
+g4f==6.6.6
