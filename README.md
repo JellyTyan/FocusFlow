@@ -2,6 +2,10 @@
 
 Aplikacja do nauki, która pomaga nie wypaść z flow, gdy utkniesz na trudnym temacie.
 
+
+**Dostępna online:** [focusflow.jellytyan.de](http://focusflow.jellytyan.de/)
+
+
 ## Problem
 
 Siedzisz do nauki, włączasz timer, a po 5 minutach trafiasz na coś, czego nie rozumiesz. Zamiast kontynuować, otwierasz Google, potem przypadkiem TikToka, i nagle minęło 20 minut. Sesja zmarnowana.
