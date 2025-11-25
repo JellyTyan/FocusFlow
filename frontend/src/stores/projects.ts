@@ -31,6 +31,14 @@ export const useProjectsStore = defineStore('projects', () => {
   const loading = ref(false);
   const error = ref<string | null>(null);
 
+  function isExpired(deadline: string): boolean {
+    const deadlineDate = new Date(deadline);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    deadlineDate.setHours(0, 0, 0, 0);
+    return deadlineDate < today;
+  }
+
   const topPriorityTopic = computed(() => {
     if (!Array.isArray(projects.value)) {
       return undefined;
@@ -39,7 +47,7 @@ export const useProjectsStore = defineStore('projects', () => {
     const allTopics: (Topic & { projectName: string; projectSubject: string; projectDeadline: string })[] = [];
     
     projects.value
-      .filter(project => !project.completed)
+      .filter(project => !project.completed && !isExpired(project.deadline))
       .forEach(project => {
         if (Array.isArray(project.topics)) {
           project.topics
@@ -121,6 +129,7 @@ export const useProjectsStore = defineStore('projects', () => {
     loading,
     error,
     topPriorityTopic,
+    isExpired,
     fetchProjects,
     createProject,
     deleteProject,

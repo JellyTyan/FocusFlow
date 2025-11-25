@@ -17,8 +17,6 @@ logger = logging.getLogger(__name__)
 
 async def create_project(project_data: ProjectCreate, user_id: str) -> Project:
     """Tworzy nowy projekt"""
-    if project_data.deadline <= datetime.now():
-        raise ValidationError("Termin musi być w przyszłości")
     
     project_id = str(uuid4())
     now = datetime.now()
@@ -99,8 +97,6 @@ async def update_project(project_id: str, update_data: ProjectUpdate, user_id: s
     if not update_dict:
         return existing_project
     
-    if 'deadline' in update_dict and update_dict['deadline'] <= datetime.now():
-        raise ValidationError("Termin musi być w przyszłości")
     
     allowed_fields = {'name', 'subject', 'deadline', 'completed'}
     safe_updates = {k: v for k, v in update_dict.items() if k in allowed_fields}

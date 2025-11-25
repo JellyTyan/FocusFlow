@@ -12,8 +12,6 @@ class ProjectBase(BaseModel):
 
     @validator('deadline')
     def validate_deadline(cls, v):
-        if v <= datetime.now():
-            raise ValueError('Deadline must be in the future')
         return v
 
     @validator('name', 'subject')

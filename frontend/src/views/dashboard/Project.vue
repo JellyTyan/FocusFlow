@@ -28,12 +28,23 @@
               ← Wróć do egzaminów
             </button>
 
-            <div class="glass-card p-4 sm:p-5 lg:p-6 rounded-2xl sm:rounded-3xl border border-white/10 flex flex-col gap-4 sm:gap-5 lg:gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div 
+              class="glass-card p-4 sm:p-5 lg:p-6 rounded-2xl sm:rounded-3xl border border-white/10 flex flex-col gap-4 sm:gap-5 lg:gap-6 lg:flex-row lg:items-center lg:justify-between"
+              :class="projectsStore.isExpired(project.deadline) ? 'opacity-50 grayscale' : ''"
+            >
               <div class="space-y-1.5 sm:space-y-2 min-w-0">
-                <p class="text-[0.625rem] sm:text-xs uppercase tracking-[0.4em] text-text-secondary">Exam focus</p>
+                <div class="flex items-center gap-2">
+                  <p class="text-[0.625rem] sm:text-xs uppercase tracking-[0.4em] text-text-secondary">Exam focus</p>
+                  <span v-if="projectsStore.isExpired(project.deadline)" class="text-xs px-2 py-1 bg-text-secondary/20 text-text-secondary rounded-lg">
+                    Zakończony
+                  </span>
+                </div>
                 <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold truncate">{{ project.name }}</h1>
                 <p class="text-text-secondary text-base sm:text-lg truncate">{{ project.subject }}</p>
-                <div class="text-xs sm:text-sm text-text-secondary">Deadline: {{ formatDate(project.deadline) }}</div>
+                <div class="text-xs sm:text-sm text-text-secondary">
+                  Deadline: {{ formatDate(project.deadline) }}
+                  <span v-if="projectsStore.isExpired(project.deadline)" class="text-soft-coral ml-2">(Przeterminowany)</span>
+                </div>
               </div>
               <div class="flex gap-2 sm:gap-3 flex-wrap flex-shrink-0">
                 <button

@@ -99,12 +99,21 @@
               :key="project.id"
               hoverable
               @click="$router.push(`/projects/${project.id}`)"
-              :class="project.completed ? 'opacity-60' : ''"
+              :class="[
+                project.completed ? 'opacity-60' : '',
+                projectsStore.isExpired(project.deadline) ? 'opacity-50 grayscale' : ''
+              ]"
             >
-              <h3 class="text-xl font-bold mb-2">{{ project.name }}</h3>
+              <div class="flex items-start justify-between gap-2 mb-2">
+                <h3 class="text-xl font-bold">{{ project.name }}</h3>
+                <span v-if="projectsStore.isExpired(project.deadline)" class="text-xs px-2 py-1 bg-text-secondary/20 text-text-secondary rounded-lg whitespace-nowrap">
+                  Zakończony
+                </span>
+              </div>
               <p class="text-text-secondary text-sm mb-4">{{ project.subject }}</p>
               <div class="text-sm text-text-secondary mb-2">
                 Deadline: {{ formatDate(project.deadline) }}
+                <span v-if="projectsStore.isExpired(project.deadline)" class="text-soft-coral ml-2">(Przeterminowany)</span>
               </div>
               <div class="text-sm text-text-secondary mb-4">
                 Tematów: {{ project.topics.length }}
@@ -248,9 +257,7 @@ const newProject = ref({
 });
 const today = new Date().toISOString().split('T')[0] ?? '';
 const deadlineError = computed(() => {
-  if (!newProject.value.deadline) return false;
-  return newProject.value.deadline < today;
-});
+const deadlineError = computed(() => false);
 
 onMounted(async () => {
   await projectsStore.fetchProjects();
@@ -295,11 +302,6 @@ const handleCreateProject = async () => {
     .split('\n')
     .map(t => t.trim())
     .filter(t => t.length > 0);
-
-  if (deadlineError.value) {
-    projectsStore.error = 'Wybierz datę późniejszą niż dzisiejsza.';
-    return;
-  }
 
   try {
     let subject = newProject.value.subject;
